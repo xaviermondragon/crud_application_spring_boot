@@ -84,6 +84,7 @@
                     <source>11</source>
                     <target>11</target>
                     <!-- We have to add this in order for mapstruct to work with lombok -->
+                    <!-- The annotationProcessorPaths tells maven which processors it should use. -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>

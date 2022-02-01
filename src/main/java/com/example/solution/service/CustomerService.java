@@ -59,5 +59,11 @@ public class CustomerService {
         return CustomerMapper.INSTANCE.customerEntityToCustomer(customerEntity);
     }
 
+    public void deleteCustomerById(Long id) {
+        // If the customer doesn't already exist in the database an exception will be thrown
+        Customer customer = getCustomer(id);
+        customerRepository.deleteById(id);
+    }
+
 
 }

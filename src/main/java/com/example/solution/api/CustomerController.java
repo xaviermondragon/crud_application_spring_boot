@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -41,5 +42,11 @@ public class CustomerController {
     public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Map<Object, Object> fields) {
        var response = customerService.updateCustomer(id, fields);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/customer/{id}")
+    public String deleteCustomerById(@PathVariable(value = "id") Long id) {
+        customerService.deleteCustomerById(id);
+        return String.format("Customer with id %d was deleted.", id);
     }
 }
