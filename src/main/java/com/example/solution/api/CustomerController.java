@@ -1,7 +1,6 @@
 package com.example.solution.api;
 
 import com.example.solution.api.model.Customer;
-import com.example.solution.errorhandling.ApiException;
 import com.example.solution.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +35,19 @@ public class CustomerController {
     public ResponseEntity<Customer> getCustomer(@PathVariable(value = "id") Long id) {
             var response= customerService.getCustomer(id);
             return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/customer")
+    public ResponseEntity<List<Customer>> getAllCustomers() {
+        var response = customerService.getAllCustomers();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/customer-by-first-name")
+    public ResponseEntity<List<Customer>> getCustomersByFirstName(@RequestParam(name = "first_name") String firstName) {
+        var response = customerService.getCustomersByFirstName(firstName);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PatchMapping(path = "/customer/{id}")

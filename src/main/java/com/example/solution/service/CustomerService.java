@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -41,6 +43,18 @@ public class CustomerService {
         throw new ApiException(HttpStatus.NOT_FOUND, "Entity not found in DB with id " + id + ".");
     }
 
+    public List<Customer> getAllCustomers() {
+        List<CustomerEntity> customerEntities = (List<CustomerEntity>) customerRepository.findAll();
+
+        return transformCustomerEntitiesToCustomers(customerEntities);
+    }
+
+    public List<Customer> getCustomersByFirstName(String firstName) {
+        List<CustomerEntity> customerEntities = customerRepository.findByFirstNameOrderByLastNameAsc(firstName);
+
+        return transformCustomerEntitiesToCustomers(customerEntities);
+    }
+
     public Customer updateCustomer(Long id, Map<Object, Object> fields) {
         // If the customer doesn't already exist in the database an exception will be thrown
         Customer customer = getCustomer(id);
@@ -65,5 +79,15 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
+
+    private List<Customer> transformCustomerEntitiesToCustomers (List<CustomerEntity> customerEntities) {
+        List<Customer> customers = new ArrayList<>();
+        customerEntities.forEach((customerEntity) -> {
+            Customer customer = CustomerMapper.INSTANCE.customerEntityToCustomer(customerEntity);
+            customers.add(customer);
+        });
+
+        return customers;
+    }
 
 }
