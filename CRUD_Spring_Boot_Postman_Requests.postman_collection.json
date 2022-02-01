@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "1a046233-9355-4a31-97ed-3b2f27134d72",
+		"name": "CRUD_Spring_Boot_Postman_Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dummy Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/api/v1/hello-world",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"hello-world"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save New Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Lucas\",\n    \"last_name\": \"Lucatero\",\n    \"email\": \"lucas_lucatero@xmail.com\",\n    \"age\": 19,\n    \"address\": \"Anacleto Morones 1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8181/api/v1/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"age\": 45,\n    \"email\": \"another_email@email.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8181/api/v1/customer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Customer By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/api/v1/customer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/api/v1/customer/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/api/v1/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"customer"
+					]
+				},
+				"description": "Get all customers"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer by First Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/api/v1/customer-by-first-name?first_name=Lucas",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"v1",
+						"customer-by-first-name"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Lucas"
+						}
+					]
+				},
+				"description": "Get all customers"
+			},
+			"response": []
+		}
+	]
+}
