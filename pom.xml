@@ -17,6 +17,7 @@
         <java.version>11</java.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
+        <spring-doc.version>1.6.6</spring-doc.version>
     </properties>
     <dependencies>
         <dependency>
@@ -53,6 +54,14 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
+        </dependency>
+        <!-- Spring Doc Open API 3.0 -->
+        <!-- API documentation at: http://localhost:8181/api-docs.yaml-->
+        <!-- Swagger UI at http://localhost:8181/swagger-ui/index.html-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${spring-doc.version}</version>
         </dependency>
         <!-- Tests -->
         <dependency>

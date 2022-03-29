@@ -1,4 +1,4 @@
-1 Aufbau einer Docker/Kubernetes-Infrastruktur (DevOps-Teil)
+A1 Aufbau einer Docker/Kubernetes-Infrastruktur (DevOps-Teil)
 1.1 Aufgabe
 Die unten genannte Anwendung soll innerhalb einer Microservice-Architektur lauffähig sein. Dazu soll die Anwedungsschicht in geeignete Docker-Images gekapselt, öffentlich (mit Authentifizierung) als Image in einer Registry verfügbar und in eine Container-Umgebung (Kubernetes-Cluster) deploybar sein.
 

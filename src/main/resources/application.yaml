@@ -10,6 +10,11 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console:
-      enabled: true # http://localhost:8181/
+      enabled: true # http://localhost:8181/h2-console
   liquibase:
     change-log: classpath:db/changelog/db.changelog-1.0.xml
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui-custom.html
