@@ -23,7 +23,9 @@ public class CustomerController {
     }
 
     @GetMapping("/hello-world")
-    public String helloWorld() {return "Hello World!";}
+    public ResponseEntity<String> helloWorld() {
+        return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+    }
 
     @PostMapping("/customer")
     public ResponseEntity<Long> saveCustomer(@RequestBody @Valid Customer customer)  {
