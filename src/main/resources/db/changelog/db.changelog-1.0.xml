@@ -30,4 +30,22 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="20220331-1" author="Xavier">
+        <insert tableName="customer">
+            <column name="id" value="1" />
+            <column name="first_name" value="Juan" />
+            <column name="last_name" value="Rulfo" />
+            <column name="email" value="j_rulfo@mymail.com" />
+            <column name="age" value="69" />
+            <column name="address" value="El llano en llamas 1." />
+        </insert>
+        <insert tableName="customer">
+            <column name="id" value="2" />
+            <column name="first_name" value="Rosario" />
+            <column name="last_name" value="Castellanos" />
+            <column name="email" value="r_castellanos@mymail.com" />
+            <column name="age" value="49" />
+            <column name="address" value="Oficio de tinieblas 2." />
+        </insert>
+    </changeSet>
 </databaseChangeLog>

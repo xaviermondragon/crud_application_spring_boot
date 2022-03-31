@@ -11,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
-import javax.validation.constraints.Null;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -34,8 +32,8 @@ class CustomerControllerTest {
         customer.setFirstName("Juan José");
         customer.setLastName("Arreola");
         customer.setEmail("j_jose_arreola@mymail.com");
-        customer.setAge(99);
-        customer.setAddress("Confabulario 1.");
+        customer.setAge(83);
+        customer.setAddress("Confabulario 3.");
 
         return customer;
     }
@@ -48,26 +46,37 @@ class CustomerControllerTest {
     }
 
     @Test
+    void getCustomerShouldSucceed() {
+     RestAssured
+                .given().pathParam("id", 1)
+                .when().request(Method.GET, "customer/{id}")
+                .then().assertThat().statusCode(HttpStatus.OK.value());
+    }
+
+    @Test
+    void getCustomerShouldFailOnNonExistentCustomer() {
+        RestAssured
+                .given().pathParam("id", 100)
+                .when().request(Method.GET, "customer/{id}")
+                .then().assertThat().statusCode(HttpStatus.NOT_FOUND.value());
+    }
+
+    @Test
+    void getAllCustomersShouldSucceed() {
+        RestAssured
+                .given()
+                .when().request(Method.GET, "customer")
+                .then().assertThat().statusCode(HttpStatus.OK.value());
+    }
+
+    @Test
     void saveCustomerShouldSucceed() throws JsonProcessingException {
         Customer customer = createCustomer();
-        var saveResponse  = RestAssured
+       RestAssured
                 .given().contentType("application/json").body(new ObjectMapper().writeValueAsString(customer))
                 .when().request(Method.POST, "customer")
                 .then().assertThat().statusCode(HttpStatus.CREATED.value())
                 .extract().as(Long.class);
-        assertEquals(1L, saveResponse);
-
-        var getResponse = RestAssured
-                .given().pathParam("id", saveResponse)
-                .when().request(Method.GET, "customer/{id}")
-                .then().assertThat().statusCode(HttpStatus.OK.value())
-                .extract().as(Customer.class);
-
-        assertEquals(customer.getFirstName(), getResponse.getFirstName());
-        assertEquals(customer.getLastName(), getResponse.getLastName());
-        assertEquals(customer.getEmail(), getResponse.getEmail());
-        assertEquals(customer.getAge(), getResponse.getAge());
-        assertEquals(customer.getAddress(), getResponse.getAddress());
     }
 
     @Test
